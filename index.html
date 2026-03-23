@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas de Gestión Emocional</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --color-calma: #ffffff;
+            --color-serenidad: #87CEEB;
+            --color-vitalidad: #8DB600;
+            --color-equilibrio: #e0f2f1;
+            --color-consciencia: #333333;
+            --color-claridad: #e3f2fd;
+        }
+
+        * {
+            font-family: 'Handlee', cursive !important;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-equilibrio);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        /* Contenedor principal */
+        #gestion-emocional-app {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* Encabezado */
+        .titulo-emocional {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .titulo-emocional h1 {
+            font-size: 3.2rem;
+            color: var(--color-consciencia);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .subtitulo-emocional {
+            font-size: 1.1rem;
+            color: var(--color-consciencia);
+            margin-top: 8px;
+            opacity: 0.75;
+        }
+
+        /* Grid de tarjetas */
+        .panel-tecnicas {
+            display: grid;
+            grid-template-columns: 1fr 1fr 0.8fr;
+            grid-template-rows: auto auto;
+            gap: 25px;
+        }
+
+        /* Tarjeta individual */
+        .tarjeta-tecnica {
+            background-color: var(--color-calma);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(135, 206, 235, 0.2);
+        }
+
+        .tarjeta-tecnica:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            border-color: var(--color-vitalidad);
+        }
+
+        /* Encabezado de tarjeta */
+        .encabezado-tecnica {
+            background-color: var(--color-serenidad);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-size: 1.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Cuerpo de tarjeta */
+        .contenido-tecnica {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        /* Badge de emoción */
+        .etiqueta-emocion {
+            background-color: var(--color-vitalidad);
+            color: white;
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Etiqueta de sección */
+        .rotulo-seccion {
+            color: var(--color-serenidad);
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 15px;
+            letter-spacing: 1.2px;
+            border-bottom: 1px dashed var(--color-serenidad);
+            width: fit-content;
+            margin-bottom: 8px;
+        }
+
+        .contenido-tecnica p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--color-consciencia);
+            margin-bottom: 10px;
+        }
+
+        /* Lista de pasos */
+        .lista-pasos {
+            list-style: none;
+            padding-left: 1em;
+            font-size: 0.95rem;
+        }
+
+        .lista-pasos li::before {
+            content: "•";
+            color: var(--color-vitalidad);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Posiciones en el grid */
+        .tecnica--regla-90s          { grid-column: 1; grid-row: 1; }
+        .tecnica--etiquetado-afectivo { grid-column: 2; grid-row: 1; }
+        .tecnica--respiracion        { grid-column: 1; grid-row: 2; }
+        .tecnica--reencuadre         { grid-column: 2; grid-row: 2; }
+        .tecnica--anclaje            { grid-column: 3; grid-row: 1 / span 2; }
+
+        /* Bloque de íconos sensoriales */
+        .iconos-sensoriales {
+            font-size: 1.8rem;
+            color: var(--color-vitalidad);
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            background: var(--color-claridad);
+            padding: 15px;
+            border-radius: 20px;
+        }
+
+        /* Frase inspiracional al pie */
+        .frase-ancla {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Mensaje de refuerzo positivo */
+        .mensaje-regulacion {
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--color-vitalidad);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .panel-tecnicas { grid-template-columns: 1fr 1fr; }
+            .tecnica--anclaje { grid-column: 1 / span 2; grid-row: auto; }
+        }
+        @media (max-width: 700px) {
+            .panel-tecnicas { grid-template-columns: 1fr; }
+            .tecnica--regla-90s,
+            .tecnica--etiquetado-afectivo,
+            .tecnica--respiracion,
+            .tecnica--reencuadre,
+            .tecnica--anclaje { grid-column: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gestion-emocional-app">
+
+        <div class="titulo-emocional">
+            <h1>Tarjetas de Gestión Emocional</h1>
+            <p class="subtitulo-emocional">Guía de autorregulación emocional para la vida moderna.</p>
+        </div>
+
+        <div class="panel-tecnicas">
+
+            <!-- Tarjeta 1: Regla de los 90s -->
+            <div class="tarjeta-tecnica tecnica--regla-90s">
+                <div class="encabezado-tecnica">
+                    <i class="fas fa-hourglass-half"></i> Regla de los 90s
+                </div>
+                <div class="contenido-tecnica">
+                    <span class="etiqueta-emocion">Ira, Pánico y Rabia</span>
+                    <span class="rotulo-seccion">¿En qué consiste?</span>
+                    <p>Es el tiempo que tarda la química de la emoción en recorrer tu sangre. Si dura más, es por tus pensamientos.</p>
+                    <span class="rotulo-seccion">Cuándo usarla:</span>
+                    <p>En el momento del "choque" emocional o provocación.</p>
+                    <span class="rotulo-seccion">Beneficios:</span>
+                    <ul class="lista-pasos">
+                        <li>Evita el secuestro emocional.</li>
+                        <li>Permite respuestas sabias, no reacciones.</li>
+                    </ul>
+                    <div class="frase-ancla">"Siente el calor, no la historia."</div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Etiquetado Afectivo -->
+            <div class="tarjeta-tecnica tecnica--etiquetado-afectivo">
+                <div class="encabezado-tecnica">
+                    <i class="fas fa-tag"></i> Etiquetado Afectivo
+                </div>
+                <div class="contenido-tecnica">
+                    <span class="etiqueta-emocion">Confusión y Ansiedad</span>
+                    <span class="rotulo-seccion">¿En qué consiste?</span>
+                    <p>Identificar la emoción con precisión quirúrgica. No digas "estoy mal", di "me siento ignorado".</p>
+                    <span class="rotulo-seccion">Cuándo usarla:</span>
+                    <p>Cuando sientas un nudo en el estómago o presión en el pecho sin causa clara.</p>
+                    <span class="rotulo-seccion">Beneficios:</span>
+                    <p>Reduce la actividad de la amígdala hasta en un 50% al "racionalizar" el sentimiento.</p>
+                    <div class="frase-ancla">"Si puedes nombrarlo, puedes domarlo."</div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Respiración 4-7-8 -->
+            <div class="tarjeta-tecnica tecnica--respiracion">
+                <div class="encabezado-tecnica">
+                    <i class="fas fa-lungs"></i> Respiración 4-7-8
+                </div>
+                <div class="contenido-tecnica">
+                    <span class="etiqueta-emocion">Estrés Agudo e Insomnio</span>
+                    <span class="rotulo-seccion">¿En qué consiste?</span>
+                    <ul class="lista-pasos">
+                        <li>Inhala por la nariz (4s).</li>
+                        <li>Aguanta el aire (7s).</li>
+                        <li>Exhala por la boca haciendo ruido (8s).</li>
+                    </ul>
+                    <span class="rotulo-seccion">Cuándo usarla:</span>
+                    <p>Antes de eventos estresantes o crisis de pánico.</p>
+                    <span class="rotulo-seccion">Beneficios:</span>
+                    <p>Envía una señal biológica de seguridad al cerebro de forma inmediata.</p>
+                    <div class="frase-ancla">"Tu respiración es tu control remoto."</div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4: Reencuadre Cognitivo -->
+            <div class="tarjeta-tecnica tecnica--reencuadre">
+                <div class="encabezado-tecnica">
+                    <i class="fas fa-brain"></i> Reencuadre Cognitivo
+                </div>
+                <div class="contenido-tecnica">
+                    <span class="etiqueta-emocion">Culpa y Resentimiento</span>
+                    <span class="rotulo-seccion">¿En qué consiste?</span>
+                    <p>Cuestionar la "película" mental. Pregúntate: "¿Qué otra explicación positiva existe para este hecho?".</p>
+                    <span class="rotulo-seccion">Cuándo usarla:</span>
+                    <p>Cuando crees que alguien te atacó o que todo saldrá mal.</p>
+                    <span class="rotulo-seccion">Beneficios:</span>
+                    <p>Desarrolla resiliencia y flexibilidad mental ante los problemas.</p>
+                    <div class="frase-ancla">"Cambia el lente, cambia el mundo."</div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 5: Anclaje 5-4-3-2-1 -->
+            <div class="tarjeta-tecnica tecnica--anclaje">
+                <div class="encabezado-tecnica">
+                    <i class="fas fa-anchor"></i> Anclaje 5-4-3-2-1
+                </div>
+                <div class="contenido-tecnica">
+                    <span class="etiqueta-emocion">Disociación y Crisis</span>
+                    <span class="rotulo-seccion">¿En qué consiste?</span>
+                    <p>Forzar al cerebro a conectar con los sentidos físicos:</p>
+                    <div class="iconos-sensoriales">
+                        <i class="fas fa-eye" title="5 Cosas que ves"></i>
+                        <i class="fas fa-hand-pointer" title="4 Cosas que tocas"></i>
+                        <i class="fas fa-ear-listen" title="3 Cosas que oyes"></i>
+                        <i class="fas fa-wind" title="2 Olores"></i>
+                    </div>
+                    <p>Finaliza con una cosa que puedas saborear o un pensamiento positivo.</p>
+                    <span class="rotulo-seccion">Cuándo usarla:</span>
+                    <p>En ataques de ansiedad donde sientes que pierdes el contacto con la realidad.</p>
+                    <span class="rotulo-seccion">Beneficios:</span>
+                    <p>Corta el bucle de pensamientos obsesivos (rumiación) de raíz.</p>
+                    <p class="mensaje-regulacion">Regresa al presente, aquí estás a salvo.</p>
+                    <div class="frase-ancla">"Donde están tus pies, está tu paz."</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+            if (window.FontAwesome) {
+                window.FontAwesome.dom.i2svg();
+            }
+        });
+    </script>
+</body>
+</html>
