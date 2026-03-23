@@ -43,7 +43,7 @@
         /* Encabezado */
         .titulo-emocional {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .titulo-emocional h1 {
@@ -57,6 +57,65 @@
             color: var(--color-consciencia);
             margin-top: 8px;
             opacity: 0.75;
+        }
+
+        /* Reproductor de podcast */
+        .zona-podcast {
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reproductor-podcast {
+            background: var(--color-calma);
+            width: 100%;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid var(--color-serenidad);
+        }
+
+        .reproductor-podcast .nombre-episodio {
+            font-size: 1.1rem;
+            color: var(--color-consciencia);
+            white-space: nowrap;
+        }
+
+        .icono-podcast {
+            color: var(--color-vitalidad);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .pista-audio {
+            height: 35px;
+            flex-grow: 1;
+            filter: hue-rotate(160deg);
+        }
+
+        .btn-descarga-podcast {
+            background-color: var(--color-vitalidad);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-descarga-podcast:hover {
+            background-color: #7a9c00;
+            transform: scale(1.05);
         }
 
         /* Grid de tarjetas */
@@ -211,6 +270,24 @@
         <div class="titulo-emocional">
             <h1>Tarjetas de Gestión Emocional</h1>
             <p class="subtitulo-emocional">Guía de autorregulación emocional para la vida moderna.</p>
+        </div>
+
+        <!-- Reproductor de Podcast -->
+        <div class="zona-podcast">
+            <div class="reproductor-podcast">
+                <i class="fas fa-headphones icono-podcast"></i>
+                <span class="nombre-episodio">Reflexión de Gestión Emocional</span>
+                <audio class="pista-audio" controls>
+                    <!-- Reemplaza SRC con la URL de tu archivo de audio en GitHub -->
+                    <source src="TU_ARCHIVO_AUDIO.ogg" type="audio/ogg">
+                    <source src="TU_ARCHIVO_AUDIO.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <!-- Reemplaza href con la URL directa de tu archivo de audio en GitHub -->
+            <a href="TU_ARCHIVO_AUDIO.ogg" download="Reflexion_Gestion_Emocional.ogg" class="btn-descarga-podcast">
+                <i class="fas fa-cloud-arrow-down"></i> Descargar Podcast
+            </a>
         </div>
 
         <div class="panel-tecnicas">
