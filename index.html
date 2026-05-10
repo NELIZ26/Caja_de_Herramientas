@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caja de Herramientas: Gestión Emocional</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --color-calma: #ffffff;
+        --color-serenidad: #87ceeb;
+        --color-vitalidad: #8db600;
+        --color-azul-rey: #4169e1; /* Azul Rey */
+        --color-consciencia: #333333;
+      }
+      * {
+        font-family: "Handlee", cursive !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        /* Patrón de líneas Azul Rey */
+        background-color: #e0eafc;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 20px,
+          rgba(65, 105, 225, 0.1) 30px,
+          rgba(65, 105, 225, 0.1) 5px
+        );
+        padding: 30px 20px;
+        min-height: 100vh;
+      }
+      .titulo-emocional {
+        text-align: center;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 50px;
+        display: inline-block;
+        left: 50%;
+        position: relative;
+        transform: translateX(-50%);
+      }
+      .panel-tecnicas {
+        max-width: 950px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+      }
+      .tarjeta-tecnica {
+        background-color: var(--color-calma);
+        border-radius: 30px;
+        border: 3px solid var(--color-serenidad);
+        overflow: hidden;
+        display: flex;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      .contenido-texto {
+        flex: 1;
+        padding: 40px 30px;
+        /* Centrado de la información como en la imagen */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .espacio-foto {
+        flex: 1;
+        border-left: 3px solid var(--color-serenidad);
+        overflow: hidden;
+        display: flex; /* Asegura que el contenido se comporte bien */
+        height: auto; /* En escritorio se ajusta al texto */
+        min-height: 100px; /* Altura mínima para que la foto luzca */
+      }
+      .espacio-foto img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+        object-position: center; /* Centra el recorte en el medio de la foto */
+        display: block;
+      }
+      .encabezado-tecnica {
+        background-color: var(--color-serenidad);
+        color: white;
+        padding: 12px;
+        font-size: 1.6rem;
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        margin-right: 10px;
+        opacity: 0.9;
+      }
+      .etiqueta-emocion {
+        background: var(--color-vitalidad);
+        color: white;
+        padding: 5px 18px;
+        border-radius: 20px;
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+      .rotulo {
+        color: var(--color-serenidad);
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+      }
+      .dato {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        color: var(--color-consciencia);
+      }
+      .audio-container {
+        margin-top: 20px;
+        width: 100%;
+      }
+      audio {
+        width: 100%;
+        height: 35px;
+      }
+      .link-insumo {
+        color: var(--color-azul-rey);
+        text-decoration: none;
+        font-weight: bold;
+      }
+      /* Contenedor principal de la sección de audio */
+      .zona-podcast {
+        margin-top: 25px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* El reproductor con estilo de cápsula */
+      .reproductor-podcast {
+        background: var(--color-equilibrio);
+        padding: 10px 20px;
+        border-radius: 50px;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 2px solid var(--color-serenidad);
+        width: 100%;
+      }
+
+      .icono-podcast {
+        color: var(--color-serenidad);
+        font-size: 1.2rem;
+      }
+
+      .nombre-episodio {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: var(--color-consciencia);
+        white-space: nowrap;
+      }
+
+      .pista-audio {
+        height: 30px;
+        flex-grow: 1; /* Esto hace que el reproductor ocupe el espacio restante */
+      }
+
+      /* Estilo del botón de descarga */
+      .btn-descarga-podcast {
+        background-color: var(--color-vitalidad);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-descarga-podcast:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+      @media (max-width: 768px) {
+        .tarjeta-tecnica {
+          flex-direction: column;
+        }
+        .espacio-foto {
+          height: 300px;
+          border-left: none;
+          border-top: 3px solid var(--color-serenidad);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="titulo-emocional">
+      <h1>Caja de Herramientas Emocionales</h1>
+      <p>Estrategias de Autocuidado y Compromiso</p>
+    </div>
+
+    <div class="panel-tecnicas">
+      <div class="tarjeta-tecnica">
+        <div class="contenido-texto">
+          <div class="encabezado-tecnica"><i class="fas fa-dumbbell"></i> Autocuidado Personal</div>
+          <span class="etiqueta-emocion">Disciplina</span>
+
+          <span class="rotulo">Práctica:</span>
+          <p class="dato">Gym (Entrenamiento tarde/noche)</p>
+
+          <span class="rotulo">Rutina:</span>
+          <p class="dato">3 veces a la semana</p>
+
+          <span class="rotulo">Insumo:</span>
+          <p class="dato">
+            <a
+              href="https://www.youtube.com/watch?v=FmOhpro8LkA"
+              target="_blank"
+              class="link-insumo"
+              >Enlace de Musica (YouTube)</a
+            >
+          </p>
+
+          <div class="zona-podcast">
+            <div class="reproductor-podcast">
+              <i class="fas fa-headphones icono-podcast"></i>
+              <span class="nombre-episodio">Música Motivadora GYM</span>
+              <audio class="pista-audio" controls>
+                <source
+                  src="./audios/Musica_Electronica_Motivadora_para_Hacer_Ejercicio 2024_Fitness_Motivacion_Mujeres_7.mp3"
+                  type="audio/mp3"
+                />
+                Tu navegador no soporta el audio.
+              </audio>
+            </div>
+            <a
+              href="./audios/Musica_Electronica_Motivadora_para_Hacer_Ejercicio 2024_Fitness_Motivacion_Mujeres_7.mp3"
+              download="Musica_Motivacion_Gym.mp3"
+              class="btn-descarga-podcast"
+            >
+              <i class="fas fa-cloud-arrow-down"></i> Descargar Música
+            </a>
+          </div>
+        </div>
+        <div class="espacio-foto">
+          <img src="./image/gym.jpeg" alt="Foto Gym" />
+        </div>
+      </div>
+
+      <div class="tarjeta-tecnica">
+        <div class="contenido-texto">
+          <div class="encabezado-tecnica"><i class="fas fa-hands-helping"></i> Cuidado hacia los Demás</div>
+          <span class="etiqueta-emocion">Empatía</span>
+
+          <span class="rotulo">Práctica:</span>
+          <p class="dato">Detalles anónimos y mensajes</p>
+
+          <span class="rotulo">Rutina:</span>
+          <p class="dato">1 vez por semana</p>
+
+          <span class="rotulo">Insumo:</span>
+          <p class="dato">Versículos y afirmaciones</p>
+        </div>
+        <div class="espacio-foto">
+          <img src="./image/Amigos.jpeg" alt="Foto Detalles" />
+        </div>
+      </div>
+
+      <div class="tarjeta-tecnica">
+        <div class="contenido-texto">
+          <div class="encabezado-tecnica"><i class="fas fa-users"></i> Cuidado Comunitario</div>
+          <span class="etiqueta-emocion">Solidaridad</span>
+
+          <span class="rotulo">Práctica:</span>
+          <p class="dato">Donación de ropa a personas vulnerables del Municipio</p>
+
+          <span class="rotulo">Rutina:</span>
+          <p class="dato">Frecuencia Trimestral</p>
+
+          <span class="rotulo">Propósito:</span>
+          <p class="dato">Apoyo a personas vulnerables</p>
+        </div>
+        <div class="espacio-foto">
+          <img src="./image/Comunidad.jpeg" alt="Foto Donación" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
